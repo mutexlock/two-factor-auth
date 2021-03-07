@@ -61,6 +61,10 @@ func main() {
 	}
 
 	input := os.Args[1]
+	extra :=""
+	if len(os.Args) == 3{
+		extra = os.Args[2]
+	}
 
 	// decode the key from the first argument
 	inputNoSpaces := strings.Replace(input, " ", "", -1)
@@ -76,5 +80,6 @@ func main() {
 	pwd := oneTimePassword(key, toBytes(epochSeconds/30))
 
 	secondsRemaining := 30 - (epochSeconds % 30)
-	fmt.Printf("%06d (%d second(s) remaining)\n", pwd, secondsRemaining)
+	fmt.Printf("%s%06d\n",extra, pwd)
+	fmt.Printf("(%d second(s) remaining)\n", secondsRemaining)
 }
